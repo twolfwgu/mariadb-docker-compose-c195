@@ -8,7 +8,7 @@
     ./docker-up.sh 
     
 ### Connect to the database
-    mysql -h "$(./docker-ip.sh | head -n 1 | awk '{print $2}')" -u sqlUser --password client_schedule        
+    mysql -h "$(./docker-ip.sh | head -n 1)" -u sqlUser --password client_schedule        
 
 ### Stopping the database
     docker-compose down
@@ -21,4 +21,4 @@
 
 ### Database wasn't initialized
 The database can be manually initialized using this command
-    cat initdb.d/* | mysql -h "$(./docker-ip.sh | head -n 1 | awk '{print $2}')" -u sqlUser --password client_schedule
+    cat initdb.d/* | mysql -h "$(./docker-ip.sh | head -n 1)" -u sqlUser --password client_schedule

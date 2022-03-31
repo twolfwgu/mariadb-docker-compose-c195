@@ -5,5 +5,5 @@ while read -r container_id; do
       --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
       "${container_id}" \
     )"
-    echo "${container_id} ${container_ip}"
-done <<< "$(docker ps -q)"
+    echo "${container_ip}"
+done <<< "$(docker-compose ps -q)"
