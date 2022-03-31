@@ -5,16 +5,20 @@
 ## To Use 
 
 ### Start the docker container
-    sudo docker-compose up -d 
-    
-### Get the container ip 
-    sudo ./docker-ip.sh
+    ./docker-up.sh 
     
 ### Connect to the database
     mysql -h "$(./docker-ip.sh | head -n 1 | awk '{print $2}')" -u sqlUser --password client_schedule        
+
+### Stopping the database
+    docker-compose down
+
+### Resetting the database
+    docker-compose down 
+    sudo rm -rf data/**
 
 ## Troubleshooting
 
 ### Database wasn't initialized
 The database can be manually initialized using this command
-    cat initdb.d/* | mysql -h 172.22.0.2 -u sqlUser --password client_schedule
+    cat initdb.d/* | mysql -h "$(./docker-ip.sh | head -n 1 | awk '{print $2}')" -u sqlUser --password client_schedule
