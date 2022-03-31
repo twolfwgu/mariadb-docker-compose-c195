@@ -11,8 +11,7 @@
     sudo ./docker-ip.sh
     
 ### Connect to the database
-    mysql -h <ip> -u sqlUser --password client_schedule
-        
+    mysql -h "$(./docker-ip.sh | head -n 1 | awk '{print $2}')" -u sqlUser --password client_schedule        
 
 ## Troubleshooting
 
